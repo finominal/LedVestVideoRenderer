@@ -54,17 +54,24 @@ namespace LedVestVideoRenderer.Domain
                         {
                             for (var i = 0; i < vest.leds.Length; i++)
                             {
-                                var loc = (m_capturedFrames*470*3) + (i*3);
+                                //go to the current location in the render buffer 
+                                var loc = (m_capturedFrames*470*3) + (i*3); 
+
+                                //get the X and Y co-ordinate from the vest led index, and flip them (video xy starts at the top)
                                 m_pixelX = m_videoManager.Width() - vest.leds[i].X - 2;
                                 m_pixelY = m_videoManager.Height() - vest.leds[i].Y - 2;
+
+                                //get the pixel that coresponds to the current VEST LED XY coordinate
                                 var color = frameImage.GetPixel(m_pixelX, m_pixelY);
 
+                                //extract the color RGB, and scale down brightness to that set in the app 
                                 m_buffer[loc] = Map(color.R, maxBrightness);
                                 m_buffer[loc + 1] = Map(color.G, maxBrightness);
                                 m_buffer[loc + 2] = Map(color.B, maxBrightness);
 
                                 if (smoothen) //get another nearby pixel and average them
                                 {
+
                                     loc = (m_capturedFrames*470*3) + (i*3);
                                     m_pixelX = m_videoManager.Width() - vest.leds[i].X - 3;
                                     m_pixelY = m_videoManager.Height() - vest.leds[i].Y - 3;
