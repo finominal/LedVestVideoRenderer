@@ -1,10 +1,9 @@
-﻿using System.Collections;
-
+﻿
 namespace LedVestVideoRenderer.Domain
 {
     public class LED 
     {
-        public int X, Y;
+        public int X, Y; //seems overly simple, but this makes it easier to itterating through the vest, and also enables scalability to video of different sizes.
 
         public LED(int _x, int _y)
         {

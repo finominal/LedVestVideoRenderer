@@ -25,6 +25,9 @@ namespace LedVestVideoRenderer.Domain
             InitializeLeds();
         }
 
+        //This is where the magic happens. 
+        //This index of all the LED's and their X/Y co-ordinates, in order that they are sequenced physically on the vest, is
+        //what enables the vest to be used as a canvas. 
         internal void InitializeLeds()
         {
             leds[0] = new LED(0, 1);

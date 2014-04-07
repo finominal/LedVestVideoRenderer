@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 using LedVestVideoRenderer.Repository;
 
@@ -16,7 +15,6 @@ namespace LedVestVideoRenderer.Domain
         private int m_capturedFrames;
         private int m_pixelX, m_pixelY; //global to avoid continuous construction
         private VideoManager m_videoManager;
-
 
         public void RenderVideoToFile(string videoFileName, string saveFileName, int maxBrightness, bool smoothen, bool checkForDuplicates, bool twoFrames)
         {

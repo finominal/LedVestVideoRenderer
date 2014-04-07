@@ -8,7 +8,6 @@ namespace LedVestVideoRenderer.Domain
     {
         private FrameGrabber frameGrabber;
 
-
         public Mp4VideoContainer(string fileName)
         {
             frameGrabber = new FrameGrabber(fileName);

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LedVestVideoRenderer
 {
@@ -12,6 +9,8 @@ namespace LedVestVideoRenderer
         {
             return text.IsNormalized();
         }
+
+        //TODO add inspection of value to ensure it is  0-255 numeric
 
     }
 }

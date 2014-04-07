@@ -2,63 +2,45 @@
 using System.Windows.Forms;
 using LedVestVideoRenderer.Domain;
 
-
 namespace LedVestVideoRenderer
 {
     public partial class LedVestVideoRenderer : Form
     {
-        
         public LedVestVideoRenderer()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
             var fileName = GetFileName("AVI (*.avi)|*.avi|MPEG (*.mpeg)|*.mpeg");
             if (fileName != null) {
                 txtAviFileName.Text = fileName;
-                //ShowFrame();
             }
         }
 
         private String GetFileName(String filter)
         {
-            
-            var dlg = new OpenFileDialog();
-            dlg.Filter = filter;
-            dlg.RestoreDirectory = true;
+
+            var dlg = new OpenFileDialog {Filter = filter, RestoreDirectory = true};
             if (txtAviFileName.Text.Length > 0) 
             {
                 dlg.InitialDirectory = GetCurrentFilePath();
             }
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                return dlg.FileName;
-            }
-            else
-            {
-                return null;
-            }
+
+            return dlg.ShowDialog(this) == DialogResult.OK ? dlg.FileName : null;
         }
 
         private String MakeFileName(String filter)
         {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = filter;
-            dlg.RestoreDirectory = true;
+            var dlg = new SaveFileDialog {Filter = filter, RestoreDirectory = true};
+
             if (txtAviFileName.Text.Length > 0)
             {
                 dlg.InitialDirectory = GetCurrentFilePath();
             }
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                return dlg.FileName;
-            }
-            else
-            {
-                return null;
-            }
+
+            return dlg.ShowDialog(this) == DialogResult.OK ? dlg.FileName : null;
         }
 
         private String GetCurrentFilePath()
@@ -92,7 +74,7 @@ namespace LedVestVideoRenderer
             /*
             if (!Validation.IsValidBrightness(textMaxBrightness.Text))
             {
-                MessageBox.Show("Please choose a filename to save the data.");
+                MessageBox.Show("Please choose a value between 0 and 255.");
                 return;
             }
              */ 
@@ -109,16 +91,12 @@ namespace LedVestVideoRenderer
                                         chbxTwoFrames.Checked
                                         );
 
-                MessageBox.Show("Render Completed!");
+                MessageBox.Show("Render Complete!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("unable to open the file \"{0}\", DirectShow reported the following error: {1}", txtAviFileName.Text, ex.Message));
+                MessageBox.Show(String.Format("unable to process the file \"{0}\",  The following error occured: {1}", txtAviFileName.Text, ex.Message));
             }
         }
-
-
-
-
     }
 }
