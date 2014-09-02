@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedVestVideoRenderer", "LedVestVideoRenderer\LedVestVideoRenderer.csproj", "{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRenderer", "LedVestVideoRenderer\VideoRenderer.csproj", "{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

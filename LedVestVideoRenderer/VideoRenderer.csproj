@@ -46,6 +46,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC\Microsoft.DirectX.AudioVideoPlayback\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.AudioVideoPlayback.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Encoder, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Expression.Encoder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Encoder.Utilities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,25 +63,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ILedManager.cs" />
     <Compile Include="Domain\Mp4VideoContainer.cs" />
     <Compile Include="Domain\RenderManager.cs" />
-    <Compile Include="Domain\VestManager.cs" />
+    <Compile Include="Domain\LedManager.cs" />
     <Compile Include="Domain\VideoManager.cs" />
     <Compile Include="Domain\AviVideoContainer.cs" />
     <Compile Include="Interface\IVideoContainer.cs" />
-    <Compile Include="LedVestVideoRenderer.cs">
+    <Compile Include="Domain\LED.cs" />
+    <Compile Include="LedVideoRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LedVestVideoRenderer.Designer.cs">
-      <DependentUpon>LedVestVideoRenderer.cs</DependentUpon>
+    <Compile Include="LedVideoRenderer.Designer.cs">
+      <DependentUpon>LedVideoRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Domain\LED.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\FileManager.cs" />
     <Compile Include="Validation.cs" />
-    <EmbeddedResource Include="LedVestVideoRenderer.resx">
-      <DependentUpon>LedVestVideoRenderer.cs</DependentUpon>
+    <EmbeddedResource Include="LedVideoRenderer.resx">
+      <DependentUpon>LedVideoRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +93,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Indexes\CocoLogoLedIndex.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Indexes\CocoTreesIndex.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Indexes\Vest.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,7 +127,7 @@
     <Content Include="lib\CAVEditLib-ASP.dll" />
     <Content Include="lib\DirectShowLib-2005.dll" />
     <Content Include="lib\FrameGrabber.dll" />
-    <Content Include="lib\FrameGrabber.XML" />
+    <Content Include="lib\Microsoft.Expression.Encoder.dll" />
     <Content Include="lib\qedit.dll" />
   </ItemGroup>
   <ItemGroup>

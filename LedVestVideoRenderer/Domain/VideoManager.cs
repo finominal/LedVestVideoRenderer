@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using LedVestVideoRenderer.Interface;
 
 namespace LedVestVideoRenderer.Domain
@@ -13,13 +14,14 @@ namespace LedVestVideoRenderer.Domain
             {
                 case "avi":
                     video = new AviVideoContainer(fileName);
-                    break;
-                case "mov":
-                    video = new Mp4VideoContainer(fileName);
+                    //video = new Mp4VideoContainer(fileName);
                     break;
                 case "mp4":
-                    video = new AviVideoContainer(fileName);
+                    video = new Mp4VideoContainer(fileName);
                     break;
+                default:
+                    throw new Exception("The video format is not able to be processed.");
+                   
             }
         }
 
@@ -55,7 +57,7 @@ namespace LedVestVideoRenderer.Domain
             var endOfFile = fileName.Length - 1;
             if (fileName.Contains("."))
             {
-                result = fileName.Substring(endOfFile-3,3);
+                result = fileName.Substring(endOfFile-2,3);
             }
 
             return result;
