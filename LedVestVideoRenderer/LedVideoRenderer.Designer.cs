@@ -1,4 +1,4 @@
-﻿namespace LedVestVideoRenderer
+﻿namespace LedArrayVideoRenderer
 {
     partial class LedVestVideoRenderer
     {

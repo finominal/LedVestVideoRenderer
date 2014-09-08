@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using LedVestVideoRenderer.Interface;
+using LedArrayVideoRenderer.Interface;
 
-namespace LedVestVideoRenderer.Domain
+namespace LedArrayVideoRenderer.Domain
 {
     class VideoManager
     {

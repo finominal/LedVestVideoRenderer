@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace LedVestVideoRenderer
+namespace LedArrayVideoRenderer
 {
     static class Program
     {

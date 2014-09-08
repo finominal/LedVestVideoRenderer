@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using LedVestVideoRenderer.Interface;
+using LedArrayVideoRenderer.Interface;
 using Microsoft.Expression.Encoder;
 
-namespace LedVestVideoRenderer.Domain
+namespace LedArrayVideoRenderer.Domain
 {
     public class Mp4VideoContainer : IVideoContainer
     {

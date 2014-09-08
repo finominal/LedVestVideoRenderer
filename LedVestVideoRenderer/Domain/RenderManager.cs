@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using LedVestVideoRenderer.Repository;
+using LedArrayVideoRenderer.Repository;
 
-namespace LedVestVideoRenderer.Domain
+namespace LedArrayVideoRenderer.Domain
 {
     public class RenderManager
     {
@@ -170,18 +170,16 @@ namespace LedVestVideoRenderer.Domain
 
         private void WriteBufferToFile(string saveFileName)
         {
-            //var copyBuffer = new byte[(m_capturedFrames - 1) * 470 * 3];
-            //for (int i = 0; i < copyBuffer.Length; i++)
-            //{
-            //    copyBuffer[i] = m_buffer1[i];
-            //}
-
-            FileManager.WriteBufferToFile(saveFileName, m_buffer1);
-
+            if (m_LedManager.numberOfControllers == 1)
+            {
+                FileManager.WriteBufferToFile(saveFileName, m_buffer1, m_LedManager.leds.Count);
+            }
             if (m_LedManager.numberOfControllers == 2)
             {
+                FileManager.WriteBufferToFile(saveFileName, m_buffer1, m_LedManager.secondControllerStartsAt);
+
                 var fileName2 = saveFileName.Substring(0, saveFileName.Length - 4) + "-2.led";
-                FileManager.WriteBufferToFile(fileName2, m_buffer2);
+                FileManager.WriteBufferToFile(fileName2, m_buffer2, m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt);
             }
         }
 

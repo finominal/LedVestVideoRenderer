@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using LedVestVideoRenderer.Domain;
+using LedArrayVideoRenderer.Domain;
 
-namespace LedVestVideoRenderer
+namespace LedArrayVideoRenderer
 {
     public partial class LedVestVideoRenderer : Form
     {

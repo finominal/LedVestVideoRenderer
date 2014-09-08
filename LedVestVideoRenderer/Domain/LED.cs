@@ -1,5 +1,5 @@
 ﻿
-namespace LedVestVideoRenderer.Domain
+namespace LedArrayVideoRenderer.Domain
 {
     public class LED 
     {

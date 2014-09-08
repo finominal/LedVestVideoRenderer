@@ -1,4 +1,4 @@
-namespace LedVestVideoRenderer.Domain
+namespace LedArrayVideoRenderer.Domain
 {
     public interface ILedManager
     {

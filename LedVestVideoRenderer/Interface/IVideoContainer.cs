@@ -1,7 +1,7 @@
 ﻿
 using System.Drawing;
 
-namespace LedVestVideoRenderer.Interface
+namespace LedArrayVideoRenderer.Interface
 {
     interface IVideoContainer
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LedVestVideoRenderer</RootNamespace>
-    <AssemblyName>LedVestVideoRenderer</AssemblyName>
+    <RootNamespace>LedArrayVideoRenderer</RootNamespace>
+    <AssemblyName>LedArrayVideoRenderer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -92,8 +92,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Indexes\CocoLogoLedIndex.csv">
+    <None Include="Indexes\CocoLoco_ArtcarIndex.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Indexes\CocoLogo_VerticalIndex.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Indexes\CocoTreesIndex.csv">

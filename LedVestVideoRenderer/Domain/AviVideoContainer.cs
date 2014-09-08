@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
-using LedVestVideoRenderer.Interface;
+using LedArrayVideoRenderer.Interface;
 using User.DirectShow;
 
-namespace LedVestVideoRenderer.Domain
+namespace LedArrayVideoRenderer.Domain
 {
     public class AviVideoContainer : IVideoContainer
     {

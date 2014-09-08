@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LedVestVideoRenderer
+namespace LedArrayVideoRenderer
 {
     public static class Validation
     {
