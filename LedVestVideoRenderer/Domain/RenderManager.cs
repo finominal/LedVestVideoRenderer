@@ -53,25 +53,27 @@ namespace LedArrayVideoRenderer.Domain
                             {
                                 if (m_LedManager.numberOfControllers == 1)
                                 {
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, 0, m_LedManager.leds.Count, m_buffer1);
+                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage,frameNo, 0, m_LedManager.leds.Count, m_buffer1);
                                 }
                                 if (m_LedManager.numberOfControllers == 2)
                                 {
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, 0, m_LedManager.secondControllerStartsAt, m_buffer1);
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, m_LedManager.secondControllerStartsAt, m_LedManager.leds.Count, m_buffer2);
-                                    
+                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage,frameNo, 0, m_LedManager.secondControllerStartsAt, m_buffer1);
+                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, frameNo, m_LedManager.secondControllerStartsAt, m_LedManager.leds.Count, m_buffer2);
                                 }
+                               
                             }
                             catch (Exception e)
                             {
+                                videoWindow.Close();
                                 throw new Exception("Render Error: pixelX = " +
                                                     m_pixelX.ToString(CultureInfo.InvariantCulture) + ", pixelY = " +
-                                                    m_pixelX.ToString(CultureInfo.InvariantCulture) + ", frameNo = " +
+                                                    m_pixelY.ToString(CultureInfo.InvariantCulture) + ", frameNo = " +
                                                     frameNo.ToString(CultureInfo.InvariantCulture) + " Ex = " + e);
+                                
                             }
                             //dispose of the current objects. 
                             frameImage.Dispose();
-                            m_capturedFrames++;
+                            //m_capturedFrames++;
                         }
                     }
                 }
@@ -79,6 +81,7 @@ namespace LedArrayVideoRenderer.Domain
                 WriteBufferToFile(saveFileName);
             }
         }
+
 
         private void SetLedCountInBufferByte()
         {
@@ -95,15 +98,15 @@ namespace LedArrayVideoRenderer.Domain
             }
         }
 
-        private void ExtractPixelsFromFrame(int maxBrightness, bool smoothen, Bitmap frameImage, int ledStartIndex, int ledEndIndex, byte[] _ledBuffer )
+        private void ExtractPixelsFromFrame(int maxBrightness, bool smoothen, Bitmap frameImage, int frameNo, int ledStartIndex, int ledEndIndex, byte[] _ledBuffer )
         {
             //advance the index location one to make room for the header byte
 
-            for (var i = ledStartIndex; i < ledEndIndex; i++)
+            for (var i = 0; i < ledEndIndex - ledStartIndex; i++)
             {
                 //go to the current location in the render buffer 
                 //add two for the header bytes
-                var loc = (m_capturedFrames*m_LedManager.leds.Count*3) + (i*3) +2;
+                var loc = (frameNo * (ledEndIndex - ledStartIndex) * 3) + (i * 3) + 2;
 
                 //get the X and Y co-ordinate from the vest led index, and flip them (video xy starts at the top)
                 m_pixelX = m_videoManager.Width() - m_LedManager.leds[i].X - 2;
@@ -148,7 +151,7 @@ namespace LedArrayVideoRenderer.Domain
         private void SetBufferSizes()
         {
             //setup the arrays and program flow based on number of controllers
-            //plus 2 is to reserve space for the led count which is the first item in the protocol.
+            //plus 2 is to reserve space for the led count which is the first item in the protocol.  
             if (m_LedManager.numberOfControllers == 1)
             {
                 m_buffer1 = new byte[(m_videoManager.FrameCount()*m_LedManager.leds.Count*3)+2];
@@ -156,8 +159,9 @@ namespace LedArrayVideoRenderer.Domain
             else if (m_LedManager.numberOfControllers == 2)
             {
                 m_buffer1 = new byte[(m_videoManager.FrameCount()*m_LedManager.secondControllerStartsAt*3)+2];
-                m_buffer2 =
-                    new byte[(m_videoManager.FrameCount()*(m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt)*3)+2];
+                m_buffer2 = new byte[(m_videoManager.FrameCount()*(m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt)*3)+2];
+                
+
             }
         }
 
@@ -176,7 +180,7 @@ namespace LedArrayVideoRenderer.Domain
             }
             if (m_LedManager.numberOfControllers == 2)
             {
-                FileManager.WriteBufferToFile(saveFileName, m_buffer1, m_LedManager.secondControllerStartsAt);
+                FileManager.WriteBufferToFile(saveFileName + "-1.led", m_buffer1, m_LedManager.secondControllerStartsAt);
 
                 var fileName2 = saveFileName.Substring(0, saveFileName.Length - 4) + "-2.led";
                 FileManager.WriteBufferToFile(fileName2, m_buffer2, m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt);

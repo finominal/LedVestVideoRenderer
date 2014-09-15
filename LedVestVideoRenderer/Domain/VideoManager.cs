@@ -62,10 +62,5 @@ namespace LedArrayVideoRenderer.Domain
 
             return result;
         }
-
-
-
-    
-    }
-    
+    } 
 }

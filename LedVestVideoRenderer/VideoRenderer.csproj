@@ -94,13 +94,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Indexes\CocoLoco_ArtcarIndex.csv">
+    <None Include="Files\LED Indexes.xlsx" />
+    <None Include="Indexes\CocoLoco_Artcar_Index.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Indexes\CocoLogo_VerticalIndex.csv">
+    <None Include="Indexes\CocoLogo_Vertical_Index.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Indexes\CocoTreesIndex.csv">
+    <None Include="Indexes\CocoTrees_Index.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Indexes\CocoTrees_Artcar_Index.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Indexes\Vest.csv">
