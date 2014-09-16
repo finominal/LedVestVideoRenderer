@@ -14,11 +14,13 @@ namespace LedArrayVideoRenderer.Domain
         public int secondControllerStartsAt;
         public Boolean ImportOk;
 
-        public void FactorLeds(int videoWidth, int videoHeight)
+        public void FactorLeds(double videoWidth, double videoHeight)
         {
             foreach (LED i in leds)
             {
-                i.Factor(((videoWidth / worldWidth) - 1), ((videoHeight / worldWidth) - 1));
+                double widthFactor = videoWidth / worldWidth;
+                double heightFactor = videoHeight/ worldHeight;
+                i.Factor(widthFactor,heightFactor);
             }
         }
 

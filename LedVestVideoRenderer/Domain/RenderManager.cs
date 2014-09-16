@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using LedArrayVideoRenderer.Repository;
 
@@ -27,6 +28,7 @@ namespace LedArrayVideoRenderer.Domain
                 SetBufferSizes();
 
                 var videoWindow = CreateVideoWindow();
+                
 
                 RefactorLedsToFitVideo();
 
@@ -48,6 +50,7 @@ namespace LedArrayVideoRenderer.Domain
                             videoWindow.BackgroundImage = frameImage;
                             videoWindow.Text = frameNo + " / " + m_videoManager.FrameCount();
                             videoWindow.Update();
+                            Application.DoEvents();
 
                             try
                             {
@@ -57,29 +60,38 @@ namespace LedArrayVideoRenderer.Domain
                                 }
                                 if (m_LedManager.numberOfControllers == 2)
                                 {
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage,frameNo, 0, m_LedManager.secondControllerStartsAt, m_buffer1);
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, frameNo, m_LedManager.secondControllerStartsAt, m_LedManager.leds.Count, m_buffer2);
+                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, m_capturedFrames, 0, m_LedManager.secondControllerStartsAt, m_buffer1);
+                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage,m_capturedFrames,  m_LedManager.secondControllerStartsAt, m_LedManager.leds.Count, m_buffer2);
                                 }
                                
                             }
                             catch (Exception e)
                             {
                                 videoWindow.Close();
-                                throw new Exception("Render Error: pixelX = " +
-                                                    m_pixelX.ToString(CultureInfo.InvariantCulture) + ", pixelY = " +
-                                                    m_pixelY.ToString(CultureInfo.InvariantCulture) + ", frameNo = " +
-                                                    frameNo.ToString(CultureInfo.InvariantCulture) + " Ex = " + e);
-                                
+                                using(var file = File.AppendText("./log.txt"))
+                                {
+                                    file.Write(ErrorMessageString(e, frameNo));
+                                }
+
+                                throw new Exception(ErrorMessageString(e, frameNo));
                             }
                             //dispose of the current objects. 
                             frameImage.Dispose();
-                            //m_capturedFrames++;
+                            m_capturedFrames++; //nececary to skip duplicate frames. 
                         }
                     }
                 }
                 videoWindow.Close();
                 WriteBufferToFile(saveFileName);
             }
+        }
+
+        private string ErrorMessageString(Exception e, int frameNo)
+        {
+            return DateTime.Now.ToLongDateString() + " Render Error: pixelX = " +
+                   m_pixelX.ToString(CultureInfo.InvariantCulture) + ", pixelY = " +
+                   m_pixelY.ToString(CultureInfo.InvariantCulture) + ", frameNo = " +
+                   frameNo.ToString(CultureInfo.InvariantCulture) + " Ex = " + e;
         }
 
 
@@ -109,8 +121,22 @@ namespace LedArrayVideoRenderer.Domain
                 var loc = (frameNo * (ledEndIndex - ledStartIndex) * 3) + (i * 3) + 2;
 
                 //get the X and Y co-ordinate from the vest led index, and flip them (video xy starts at the top)
-                m_pixelX = m_videoManager.Width() - m_LedManager.leds[i].X - 2;
-                m_pixelY = m_videoManager.Height() - m_LedManager.leds[i].Y - 2;
+                m_pixelX = (m_videoManager.Width() - m_LedManager.leds[i].X) ;
+                m_pixelY =( m_videoManager.Height() - m_LedManager.leds[i].Y) ;
+
+                //if (m_pixelX < 0 || m_pixelY < 0
+                //    || m_pixelX > m_videoManager.Width() || m_pixelY > m_videoManager.Height())
+                //{
+
+                //    var a = m_videoManager.Width();
+                //    var b =  m_LedManager.leds[i].X;
+                //    var c = a - b ;
+                //    var d = m_videoManager.Height();
+                //    var e =  m_LedManager.leds[i].Y;
+                //    var f = d - e ;
+                //    break;
+
+                //}
 
                 //get the pixel that coresponds to the current VEST LED XY coordinate
                 var color = frameImage.GetPixel(m_pixelX, m_pixelY);
@@ -176,14 +202,14 @@ namespace LedArrayVideoRenderer.Domain
         {
             if (m_LedManager.numberOfControllers == 1)
             {
-                FileManager.WriteBufferToFile(saveFileName, m_buffer1, m_LedManager.leds.Count);
+                FileManager.WriteBufferToFile(saveFileName, m_buffer1, m_LedManager.leds.Count, m_capturedFrames);
             }
             if (m_LedManager.numberOfControllers == 2)
             {
-                FileManager.WriteBufferToFile(saveFileName + "-1.led", m_buffer1, m_LedManager.secondControllerStartsAt);
+                FileManager.WriteBufferToFile(saveFileName + "-1.led", m_buffer1, m_LedManager.secondControllerStartsAt, m_capturedFrames);
 
                 var fileName2 = saveFileName.Substring(0, saveFileName.Length - 4) + "-2.led";
-                FileManager.WriteBufferToFile(fileName2, m_buffer2, m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt);
+                FileManager.WriteBufferToFile(fileName2, m_buffer2, m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt, m_capturedFrames);
             }
         }
 

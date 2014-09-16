@@ -14,8 +14,8 @@ namespace LedArrayVideoRenderer.Domain
         public void Factor(double factorX, double factorY)
         {
 
-            X *= (int)(factorX );
-            Y *= (int)(factorY );
+            X = (int) (X * factorX) ;
+            Y =(int) (Y * factorY) ;
             
         }
     }
