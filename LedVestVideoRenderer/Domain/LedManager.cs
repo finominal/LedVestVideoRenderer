@@ -16,10 +16,11 @@ namespace LedArrayVideoRenderer.Domain
 
         public void FactorLeds(double videoWidth, double videoHeight)
         {
+            double widthFactor = (videoWidth*0.95) / worldWidth ; //plus two to help keep the expansion inside the width. 
+            double heightFactor = (videoHeight*0.95) / worldHeight ;
+
             foreach (LED i in leds)
             {
-                double widthFactor = videoWidth / worldWidth;
-                double heightFactor = videoHeight/ worldHeight;
                 i.Factor(widthFactor,heightFactor);
             }
         }

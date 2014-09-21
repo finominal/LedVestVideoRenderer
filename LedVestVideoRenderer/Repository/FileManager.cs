@@ -15,7 +15,7 @@ namespace LedArrayVideoRenderer.Repository
             }
 
             var header = CreateHeader(ledCount); 
-            var fileSize = 2 + (capturedFramesCount * ledCount * 3); //if skipping frames, the data will be smaller than the buffer
+            var fileSize = (capturedFramesCount * ledCount * 3); //if skipping frames, the data will be smaller than the buffer
 
             using (var file = File.Create(fileName))
             {

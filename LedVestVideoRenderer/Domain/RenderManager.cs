@@ -16,127 +16,116 @@ namespace LedArrayVideoRenderer.Domain
         private Bitmap m_lastImg;
         private int m_capturedFrames;
         private int m_pixelX, m_pixelY; //global to avoid continuous construction
+        private Form videoWindow;
 
         public void RenderVideoToFile(string videoFileName, string ledIndexFileName,  string saveFileName, int maxBrightness, bool smoothen, bool checkForDuplicates, bool twoFrames)
         {
+            //This method manages the extraction of data from the video, and triggers the execution of the file. 
+            //It can manage up to TWO controllers. 
             //instantiate core objects
-            m_videoManager = new VideoManager(videoFileName);
-            m_LedManager = new LedManager(ledIndexFileName);
+
+            m_videoManager = new VideoManager(videoFileName); //chooses the codex based on the file type
+            m_LedManager = new LedManager(ledIndexFileName);  //imports the LED index
 
             if (m_LedManager.ImportOk)
             {
+                //setup
                 SetBufferSizes();
-
-                var videoWindow = CreateVideoWindow();
-                
-
+                CreateVideoWindow();
                 RefactorLedsToFitVideo();
 
-                SetLedCountInBufferByte();
+                //main routine
+                ExtractPixelsFromVideo(maxBrightness, smoothen, checkForDuplicates, twoFrames);
 
-                //for each frame in the video
-                for (var frameNo = 0; frameNo < m_videoManager.FrameCount(); frameNo++)
-                {
-                    //get the next frame from the video file
-                    var frameImage = m_videoManager.GetFrameBitmap(frameNo);
-
-                    if (!(twoFrames && frameNo%2 == 1)) //skip if we are skipping every second frame
-                    {
-                        var duplicate = false;
-                        if (checkForDuplicates) duplicate = IsDuplicateFrame(frameImage); //compare to last frame, this helps prevent glitchyness when a frame is extracted twice. 
-
-                        if (!duplicate)
-                        {
-                            videoWindow.BackgroundImage = frameImage;
-                            videoWindow.Text = frameNo + " / " + m_videoManager.FrameCount();
-                            videoWindow.Update();
-                            Application.DoEvents();
-
-                            try
-                            {
-                                if (m_LedManager.numberOfControllers == 1)
-                                {
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage,frameNo, 0, m_LedManager.leds.Count, m_buffer1);
-                                }
-                                if (m_LedManager.numberOfControllers == 2)
-                                {
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, m_capturedFrames, 0, m_LedManager.secondControllerStartsAt, m_buffer1);
-                                    ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage,m_capturedFrames,  m_LedManager.secondControllerStartsAt, m_LedManager.leds.Count, m_buffer2);
-                                }
-                               
-                            }
-                            catch (Exception e)
-                            {
-                                videoWindow.Close();
-                                using(var file = File.AppendText("./log.txt"))
-                                {
-                                    file.Write(ErrorMessageString(e, frameNo));
-                                }
-
-                                throw new Exception(ErrorMessageString(e, frameNo));
-                            }
-                            //dispose of the current objects. 
-                            frameImage.Dispose();
-                            m_capturedFrames++; //nececary to skip duplicate frames. 
-                        }
-                    }
-                }
+                //conclusion
                 videoWindow.Close();
                 WriteBufferToFile(saveFileName);
             }
         }
 
-        private string ErrorMessageString(Exception e, int frameNo)
+        private void ExtractPixelsFromVideo(int maxBrightness, bool smoothen, bool checkForDuplicates, bool twoFrames)
         {
-            return DateTime.Now.ToLongDateString() + " Render Error: pixelX = " +
-                   m_pixelX.ToString(CultureInfo.InvariantCulture) + ", pixelY = " +
-                   m_pixelY.ToString(CultureInfo.InvariantCulture) + ", frameNo = " +
-                   frameNo.ToString(CultureInfo.InvariantCulture) + " Ex = " + e;
-        }
-
-
-        private void SetLedCountInBufferByte()
-        {
-            //The first two bytes in the protocol is the led count, used by the playback controller 
-            var highbyte = (uint)m_LedManager.leds.Count;
-            m_buffer1[1] = (byte)highbyte;//lsb
-            m_buffer1[0] = (byte)(highbyte>>8);//msb
-            
-            if(m_LedManager.numberOfControllers == 2)
+            //for each frame in the video
+            for (var frameNo = 0; frameNo < m_videoManager.FrameCount(); frameNo++)
             {
-                highbyte = (uint)(m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt);
-                m_buffer2[1] = (byte)(highbyte);
-                m_buffer2[0] = (byte)(highbyte>>8); 
+                //get the next frame from the video file
+                var frameImage = m_videoManager.GetFrameBitmap(frameNo);
+
+                if (!(twoFrames && frameNo%2 == 1)) //skip if we are skipping every second frame
+                {
+                    var duplicate = false;
+                    if (checkForDuplicates)
+                        duplicate = IsDuplicateFrame(frameImage);
+                            //compare to last frame, this helps prevent glitchyness when a frame is extracted twice. 
+
+                    if (!duplicate)
+                    {
+                        videoWindow.BackgroundImage = frameImage;
+                        videoWindow.Text = frameNo + " / " + m_videoManager.FrameCount();
+                        videoWindow.Update();
+                        Application.DoEvents();
+
+                        //get the individual pixels
+                        try
+                        {
+                            if (m_LedManager.numberOfControllers == 1)
+                            {
+                                ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, frameNo, 0, m_LedManager.leds.Count,m_buffer1);
+                            }
+                            if (m_LedManager.numberOfControllers == 2)
+                            {
+                                ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, m_capturedFrames, 0, m_LedManager.secondControllerStartsAt, m_buffer1);
+                                ExtractPixelsFromFrame(maxBrightness, smoothen, frameImage, m_capturedFrames, m_LedManager.secondControllerStartsAt, m_LedManager.leds.Count, m_buffer2);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            videoWindow.Close();
+                            using (var file = File.AppendText("./log.txt"))
+                            {
+                                file.Write(ErrorMessageString(e, frameNo));
+                            }
+
+                            throw new Exception(ErrorMessageString(e, frameNo));
+                        }
+
+                        //dispose of the current objects. 
+                        frameImage.Dispose();
+                        m_capturedFrames++; //nececary to skip duplicate frames. 
+                    }
+                }
             }
         }
 
         private void ExtractPixelsFromFrame(int maxBrightness, bool smoothen, Bitmap frameImage, int frameNo, int ledStartIndex, int ledEndIndex, byte[] _ledBuffer )
         {
-            //advance the index location one to make room for the header byte
+            //Main Code to get the colors from the video based on the X/Y co-ordinates from the index.
+            try
+            {
+
 
             for (var i = 0; i < ledEndIndex - ledStartIndex; i++)
             {
                 //go to the current location in the render buffer 
                 //add two for the header bytes
-                var loc = (frameNo * (ledEndIndex - ledStartIndex) * 3) + (i * 3) + 2;
+                var loc = (frameNo * (ledEndIndex - ledStartIndex) * 3) + (i * 3) ;
 
                 //get the X and Y co-ordinate from the vest led index, and flip them (video xy starts at the top)
-                m_pixelX = (m_videoManager.Width() - m_LedManager.leds[i].X) ;
-                m_pixelY =( m_videoManager.Height() - m_LedManager.leds[i].Y) ;
+                m_pixelX = ((m_videoManager.Width()-1) - m_LedManager.leds[i].X) ;
+                m_pixelY =( (m_videoManager.Height()-1) - m_LedManager.leds[i].Y) ;
 
-                //if (m_pixelX < 0 || m_pixelY < 0
-                //    || m_pixelX > m_videoManager.Width() || m_pixelY > m_videoManager.Height())
-                //{
-
-                //    var a = m_videoManager.Width();
-                //    var b =  m_LedManager.leds[i].X;
-                //    var c = a - b ;
-                //    var d = m_videoManager.Height();
-                //    var e =  m_LedManager.leds[i].Y;
-                //    var f = d - e ;
-                //    break;
-
-                //}
+                //DEV - Catch Refactoring Indexing issues
+                if (m_pixelX < 0 || m_pixelY < 0
+                    || m_pixelX >= m_videoManager.Width() || m_pixelY >= m_videoManager.Height())
+                {
+                    var a = m_videoManager.Width();
+                    var b =  m_LedManager.leds[i].X;
+                    var c = a - b ;
+                    var d = m_videoManager.Height();
+                    var e =  m_LedManager.leds[i].Y;
+                    var f = d - e ;
+                    break;
+                }
 
                 //get the pixel that coresponds to the current VEST LED XY coordinate
                 var color = frameImage.GetPixel(m_pixelX, m_pixelY);
@@ -158,14 +147,26 @@ namespace LedArrayVideoRenderer.Domain
                     _ledBuffer[loc + 2] = (byte)((Map(color2.B, maxBrightness) / 2) + (_ledBuffer[loc + 2] / 2));
                 }
             }
+            }
+            catch (Exception e)
+            {
+                var x = e;
+            }
         }
 
-        private Form CreateVideoWindow()
+        private string ErrorMessageString(Exception e, int frameNo)
+        {
+            return DateTime.Now.ToLongDateString() + " Render Error: pixelX = " +
+                   m_pixelX.ToString(CultureInfo.InvariantCulture) + ", pixelY = " +
+                   m_pixelY.ToString(CultureInfo.InvariantCulture) + ", frameNo = " +
+                   frameNo.ToString(CultureInfo.InvariantCulture) + " Ex = " + e;
+        }
+
+        private void CreateVideoWindow()
         {
             //create a window with which to display the video as frames are rendered. 
-            var videoWindow = new Form {Width = m_videoManager.Width(), Height = m_videoManager.Height()};
+            videoWindow = new Form { Width = m_videoManager.Width(), Height = m_videoManager.Height() };
             videoWindow.Show();
-            return videoWindow;
         }
 
         private void RefactorLedsToFitVideo()
@@ -177,15 +178,15 @@ namespace LedArrayVideoRenderer.Domain
         private void SetBufferSizes()
         {
             //setup the arrays and program flow based on number of controllers
-            //plus 2 is to reserve space for the led count which is the first item in the protocol.  
+            //This buffer size does not include the header, that is calculated at file creation time.   
             if (m_LedManager.numberOfControllers == 1)
             {
-                m_buffer1 = new byte[(m_videoManager.FrameCount()*m_LedManager.leds.Count*3)+2];
+                m_buffer1 = new byte[(m_videoManager.FrameCount()*m_LedManager.leds.Count*3)];
             }
             else if (m_LedManager.numberOfControllers == 2)
             {
-                m_buffer1 = new byte[(m_videoManager.FrameCount()*m_LedManager.secondControllerStartsAt*3)+2];
-                m_buffer2 = new byte[(m_videoManager.FrameCount()*(m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt)*3)+2];
+                m_buffer1 = new byte[(m_videoManager.FrameCount()*m_LedManager.secondControllerStartsAt*3)];
+                m_buffer2 = new byte[(m_videoManager.FrameCount()*(m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt)*3)];
                 
 
             }

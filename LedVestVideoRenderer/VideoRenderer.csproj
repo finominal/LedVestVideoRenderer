@@ -95,7 +95,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Files\LED Indexes.xlsx" />
-    <None Include="Indexes\CocoLoco_Artcar_Index.csv">
+    <None Include="Indexes\CocoLogo_Artcar_Index.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Indexes\CocoLogo_Vertical_Index.csv">
