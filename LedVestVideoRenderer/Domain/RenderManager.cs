@@ -207,7 +207,7 @@ namespace LedArrayVideoRenderer.Domain
             }
             if (m_LedManager.numberOfControllers == 2)
             {
-                FileManager.WriteBufferToFile(saveFileName + "-1.led", m_buffer1, m_LedManager.secondControllerStartsAt, m_capturedFrames);
+                FileManager.WriteBufferToFile(saveFileName.Substring(0, saveFileName.Length - 4) + "-1.led", m_buffer1, m_LedManager.secondControllerStartsAt, m_capturedFrames);
 
                 var fileName2 = saveFileName.Substring(0, saveFileName.Length - 4) + "-2.led";
                 FileManager.WriteBufferToFile(fileName2, m_buffer2, m_LedManager.leds.Count - m_LedManager.secondControllerStartsAt, m_capturedFrames);
