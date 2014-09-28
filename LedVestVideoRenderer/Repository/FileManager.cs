@@ -28,7 +28,8 @@ namespace LedArrayVideoRenderer.Repository
         {
             byte[] result = new byte[2];
             result[1] = (byte)number;
-            result[0] = (byte)(number >> 8);
+            result[0] = (byte)(number >> 8); //msb get pulled off first and pushed into an integer. 
+
             return result;
         }
     }

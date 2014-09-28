@@ -110,9 +110,13 @@ namespace LedArrayVideoRenderer.Domain
                 //add two for the header bytes
                 var loc = (frameNo * (ledEndIndex - ledStartIndex) * 3) + (i * 3) ;
 
-                //get the X and Y co-ordinate from the vest led index, and flip them (video xy starts at the top)
-                m_pixelX = ((m_videoManager.Width()-1) - m_LedManager.leds[i].X) ;
-                m_pixelY =( (m_videoManager.Height()-1) - m_LedManager.leds[i].Y) ;
+                //vest xy is reversed compared to an image. 
+               // m_pixelX = ((m_videoManager.Width()-1) - m_LedManager.leds[i].X) ;//for the vest, x starts at the top
+               // m_pixelY = ((m_videoManager.Height() - 1) - m_LedManager.leds[i].Y);
+                
+                //artcar indexing is the same as an image. 
+                m_pixelX = ( m_LedManager.leds[i].X ); //for the artcar zero starts at the top. same as an image
+                m_pixelY =( m_LedManager.leds[i].Y) ;
 
                 //DEV - Catch Refactoring Indexing issues
                 if (m_pixelX < 0 || m_pixelY < 0
