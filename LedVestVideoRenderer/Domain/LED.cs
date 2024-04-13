@@ -16,7 +16,6 @@ namespace LedArrayVideoRenderer.Domain
 
             X = (int) (X * factorX) ;
             Y =(int) (Y * factorY) ;
-            
         }
     }
 }

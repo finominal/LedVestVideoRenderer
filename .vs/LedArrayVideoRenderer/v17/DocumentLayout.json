@@ -1,0 +1,138 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\src\\LedVestVideoRenderer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|c:\\src\\ledvestvideorenderer\\ledvestvideorenderer\\ledvideorenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\ledvideorenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|c:\\src\\ledvestvideorenderer\\ledvestvideorenderer\\ledvideorenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\ledvideorenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|c:\\src\\ledvestvideorenderer\\ledvestvideorenderer\\domain\\rendermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\domain\\rendermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|C:\\src\\LedVestVideoRenderer\\ledvestvideorenderer\\domain\\ledmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\domain\\ledmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|C:\\src\\LedVestVideoRenderer\\ledvestvideorenderer\\domain\\led.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\domain\\led.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|c:\\src\\ledvestvideorenderer\\ledvestvideorenderer\\indexes\\muchogusto.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\indexes\\muchogusto.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|C:\\src\\LedVestVideoRenderer\\ledvestvideorenderer\\repository\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A7CAC9-CBFD-42E2-93EB-C977DA5485DE}|LedVestVideoRenderer\\VideoRenderer.csproj|solutionrelative:ledvestvideorenderer\\repository\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LedVideoRenderer.cs [Design]",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\LedVideoRenderer.cs",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\LedVideoRenderer.cs",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\LedVideoRenderer.cs [Design]",
+              "RelativeToolTip": "LedVestVideoRenderer\\LedVideoRenderer.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T03:50:18.127Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LedVideoRenderer.cs",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\LedVideoRenderer.cs",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\LedVideoRenderer.cs",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\LedVideoRenderer.cs",
+              "RelativeToolTip": "LedVestVideoRenderer\\LedVideoRenderer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T03:49:23.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "muchogusto.csv",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Indexes\\muchogusto.csv",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\Indexes\\muchogusto.csv",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Indexes\\muchogusto.csv",
+              "RelativeToolTip": "LedVestVideoRenderer\\Indexes\\muchogusto.csv",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAAIAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-04-12T03:54:30.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LED.cs",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Domain\\LED.cs",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\Domain\\LED.cs",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Domain\\LED.cs",
+              "RelativeToolTip": "LedVestVideoRenderer\\Domain\\LED.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T12:53:39.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FileManager.cs",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Repository\\FileManager.cs",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\Repository\\FileManager.cs",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Repository\\FileManager.cs",
+              "RelativeToolTip": "LedVestVideoRenderer\\Repository\\FileManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T11:49:18.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LedManager.cs",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Domain\\LedManager.cs",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\Domain\\LedManager.cs",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Domain\\LedManager.cs",
+              "RelativeToolTip": "LedVestVideoRenderer\\Domain\\LedManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T11:39:57.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RenderManager.cs",
+              "DocumentMoniker": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Domain\\RenderManager.cs",
+              "RelativeDocumentMoniker": "LedVestVideoRenderer\\Domain\\RenderManager.cs",
+              "ToolTip": "C:\\src\\LedVestVideoRenderer\\LedVestVideoRenderer\\Domain\\RenderManager.cs",
+              "RelativeToolTip": "LedVestVideoRenderer\\Domain\\RenderManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC0AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T11:19:08.605Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

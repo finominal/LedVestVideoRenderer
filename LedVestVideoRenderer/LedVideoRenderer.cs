@@ -99,10 +99,7 @@ namespace LedArrayVideoRenderer
                      txtAviFileName.Text,
                     "Indexes/" +  lbIndexFile.SelectedItem,
                                         textSaveAs.Text, 
-                                        int.Parse(textMaxBrightness.Text),
-                                        chbxSmoothen.Checked, 
-                                        chbxDuplicate.Checked,
-                                        chbxTwoFrames.Checked
+                                        int.Parse(textMaxBrightness.Text)
                                         );
 
                 MessageBox.Show("Render Complete!");
