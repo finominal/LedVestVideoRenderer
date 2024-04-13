@@ -38,12 +38,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textMaxBrightness = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.chbxSmoothen = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.chbxDuplicate = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.chbxTwoFrames = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lbIndexFile = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -92,7 +86,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(522, 338);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button2.Location = new System.Drawing.Point(522, 240);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 23);
             this.button2.TabIndex = 5;
@@ -125,7 +121,7 @@
             this.textMaxBrightness.Name = "textMaxBrightness";
             this.textMaxBrightness.Size = new System.Drawing.Size(100, 20);
             this.textMaxBrightness.TabIndex = 8;
-            this.textMaxBrightness.Text = "100";
+            this.textMaxBrightness.Text = "255";
             // 
             // label4
             // 
@@ -135,60 +131,6 @@
             this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "0-255";
-            // 
-            // chbxSmoothen
-            // 
-            this.chbxSmoothen.AutoSize = true;
-            this.chbxSmoothen.Location = new System.Drawing.Point(144, 242);
-            this.chbxSmoothen.Name = "chbxSmoothen";
-            this.chbxSmoothen.Size = new System.Drawing.Size(15, 14);
-            this.chbxSmoothen.TabIndex = 10;
-            this.chbxSmoothen.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(82, 242);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Smoothen";
-            // 
-            // chbxDuplicate
-            // 
-            this.chbxDuplicate.AutoSize = true;
-            this.chbxDuplicate.Location = new System.Drawing.Point(144, 283);
-            this.chbxDuplicate.Name = "chbxDuplicate";
-            this.chbxDuplicate.Size = new System.Drawing.Size(15, 14);
-            this.chbxDuplicate.TabIndex = 12;
-            this.chbxDuplicate.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 284);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Duplicate Check";
-            // 
-            // chbxTwoFrames
-            // 
-            this.chbxTwoFrames.AutoSize = true;
-            this.chbxTwoFrames.Location = new System.Drawing.Point(144, 323);
-            this.chbxTwoFrames.Name = "chbxTwoFrames";
-            this.chbxTwoFrames.Size = new System.Drawing.Size(15, 14);
-            this.chbxTwoFrames.TabIndex = 12;
-            this.chbxTwoFrames.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 324);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Get Ever 2nd Frame";
             // 
             // label8
             // 
@@ -211,15 +153,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 377);
+            this.ClientSize = new System.Drawing.Size(661, 291);
             this.Controls.Add(this.lbIndexFile);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.chbxTwoFrames);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.chbxDuplicate);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.chbxSmoothen);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textMaxBrightness);
             this.Controls.Add(this.label3);
@@ -250,12 +186,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textMaxBrightness;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox chbxSmoothen;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox chbxDuplicate;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox chbxTwoFrames;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox lbIndexFile;
     }

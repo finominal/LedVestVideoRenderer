@@ -12,8 +12,14 @@ namespace LedArrayVideoRenderer.Domain
         public int worldWidth, worldHeight;
         public int numberOfControllers;
         public int secondControllerStartsAt;
-        public Boolean ImportOk;
+        public bool ImportOk;
 
+        public LedManager(string ledIndexFileName)
+        {
+            InitializeLeds(ledIndexFileName);
+        }
+
+        public int LedCount => leds.Count;
         public void FactorLeds(double videoWidth, double videoHeight)
         {
             double widthFactor = (videoWidth*0.95) / worldWidth ; //plus two to help keep the expansion inside the width. 
@@ -21,13 +27,8 @@ namespace LedArrayVideoRenderer.Domain
 
             foreach (LED i in leds)
             {
-                i.Factor(widthFactor,heightFactor);
+                i.Factor(widthFactor, heightFactor);
             }
-        }
-
-        public LedManager(string ledIndexFileName)
-        {
-            InitializeLeds(ledIndexFileName);
         }
 
         public void InitializeLeds(string ledFileName)
@@ -48,7 +49,7 @@ namespace LedArrayVideoRenderer.Domain
                     {
                         var line = reader.ReadLine();
                         var values = line.Split(',');
-                        var led = new LED(int.Parse(values[0]), int.Parse(values[1]));
+                        var led = new LED(int.Parse(values[1]), int.Parse(values[0]));
                         leds.Add(led);
                     }
 
