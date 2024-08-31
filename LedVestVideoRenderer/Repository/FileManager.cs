@@ -44,10 +44,7 @@ namespace LedArrayVideoRenderer.Repository
                 var rowBuilder = new StringBuilder();
 
                 rowBuilder.Append("{"); //start row
-                rowBuilder.Append("{"); //start row
-                rowBuilder.Append("{"); //start row
-                rowBuilder.Append("{"); //start row
-                rowBuilder.Append("{"); //start row
+
 
                 for (int led = 0; led < ledCount; led++)
                 {

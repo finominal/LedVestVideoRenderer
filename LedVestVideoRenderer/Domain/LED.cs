@@ -7,15 +7,15 @@ namespace LedArrayVideoRenderer.Domain
 
         public LED(int _x, int _y)
         {
-            X = _x;
-            Y = _y;
+            X = _y;
+            Y = _x;
         }
 
         public void Factor(double factorX, double factorY)
         {
 
             X = (int) (X * factorX) ;
-            Y =(int) (Y * factorY) ;
+            Y =(int) (Y * factorY) +150;
         }
     }
 }

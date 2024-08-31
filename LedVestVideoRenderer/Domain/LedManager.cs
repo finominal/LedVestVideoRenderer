@@ -22,8 +22,8 @@ namespace LedArrayVideoRenderer.Domain
         public int LedCount => leds.Count;
         public void FactorLeds(double videoWidth, double videoHeight)
         {
-            double widthFactor = (videoWidth*0.95) / worldWidth ; //plus two to help keep the expansion inside the width. 
-            double heightFactor = (videoHeight*0.95) / worldHeight ;
+            double widthFactor = ((videoWidth*0.95) / worldWidth)  ; 
+            double heightFactor = (videoHeight*0.95) / (worldHeight ) *.8 ;
 
             foreach (LED i in leds)
             {
@@ -54,7 +54,7 @@ namespace LedArrayVideoRenderer.Domain
                     }
 
                     //set the world parameters
-                    worldWidth = GetWidth(); //strech by 5 to keep the leds inside the boarder, neat
+                    worldWidth = GetWidth(); 
                     worldHeight = GetHeight();
 
                     ImportOk = true;
